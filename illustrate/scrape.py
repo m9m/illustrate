@@ -1,6 +1,7 @@
 import requests
 import asyncio
 
+
 class ScrapeUtilities:
     def __init__(self, db, settings):
         self.db = db
@@ -53,15 +54,18 @@ class ScrapeUtilities:
         await self.db.update_service_data(
             "eth_price", value=round(response.json()["rate"], 2)
         )
+
     async def eth_gas_operations(self):
         """
         Updates ETH gas
         """
         response = self.s.get("https://ethgasstation.info/api/ethgasAPI.json").json()
-        await self.db.update_service_data("eth_gas", value=f"Fast: {response['fastest']/10} gwei ({response['fastestWait']}m)\\n"\
-            f"Average: {response['average']/10} gwei ({response['avgWait']}m)\\n"\
-            f"Low: {response['safeLow']/10} gwei ({response['safeLowWait']}m)\\n")
-
+        await self.db.update_service_data(
+            "eth_gas",
+            value=f"Fast: {response['fastest']/10} gwei ({response['fastestWait']}m)\\n"
+            f"Average: {response['average']/10} gwei ({response['avgWait']}m)\\n"
+            f"Low: {response['safeLow']/10} gwei ({response['safeLowWait']}m)\\n",
+        )
 
     async def ens_operations(self):
         """

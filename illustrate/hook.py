@@ -2,6 +2,7 @@ import requests
 import json
 import asyncio
 
+
 class HookUtilities:
     def __init__(self, db, settings):
         self.db = db
@@ -27,7 +28,11 @@ class HookUtilities:
         value = await self.db.retrieve_service_data(data_name)
         self.s.post(
             webhook_url,
-            json=json.loads(self.webhook_json_data.replace("TITLE_VALUE",self.db_keys_reverse[value[0]]).replace("DATA_VALUE",value[1])),
+            json=json.loads(
+                self.webhook_json_data.replace(
+                    "TITLE_VALUE", self.db_keys_reverse[value[0]]
+                ).replace("DATA_VALUE", value[1])
+            ),
         )
 
     async def loop(self):
@@ -40,4 +45,3 @@ class HookUtilities:
                 if hook[1]:
                     await self._send(hook[0], hook[1])
             await asyncio.sleep(self.settings["webhook_update_intervals"])
-

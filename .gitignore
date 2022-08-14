@@ -129,7 +129,6 @@ dmypy.json
 .pyre/
 
 *.json
-__pycache__/
 app*.py
 *.db
 *.DS_Store

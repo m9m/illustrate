@@ -1,11 +1,12 @@
 import sqlite3
 
-class DatabaseUtilities :
+
+class DatabaseUtilities:
     def __init__(self):
         # create re-usable connection object and try to REGISTER tables
         self.db = self._create_connection()
         self._register_tables()
-        
+
     def _create_connection(self, db_file="./data.db"):
         """
         Creates a db file and a connection object. Usually used internally.
@@ -20,7 +21,6 @@ class DatabaseUtilities :
             db_file,
         )
         return self.db
-    
 
     def _register_tables(self):
         """
@@ -153,7 +153,7 @@ class DatabaseUtilities :
         self.db.commit()
         row = cur.fetchall()
         return row[0]
-    
+
     async def _data_grab(self, key, sql):
         """
         Grabs specific webhook urls under conditions and labels it under a key. Not referenced externally.
@@ -178,8 +178,20 @@ class DatabaseUtilities :
         Returns:
             List[List[str,int]]: list of lists containing [data_name, webhook_url]
         """
-        data1 = await self._data_grab("btc_price", "SELECT btc_price_webhook FROM GuildSettingsInformation WHERE btc_price_webhook_enabled=1")
-        data2 = await self._data_grab("eth_price", "SELECT eth_price_webhook FROM GuildSettingsInformation WHERE eth_price_webhook_enabled=1")
-        data3 = await self._data_grab("eth_gas", "SELECT eth_gas_webhook FROM GuildSettingsInformation WHERE eth_gas_webhook_enabled=1")
-        data4 = await self._data_grab("ens", "SELECT ens_webhook FROM GuildSettingsInformation WHERE ens_webhook_enabled=1")
-        return data1+data2+data3+data4
+        data1 = await self._data_grab(
+            "btc_price",
+            "SELECT btc_price_webhook FROM GuildSettingsInformation WHERE btc_price_webhook_enabled=1",
+        )
+        data2 = await self._data_grab(
+            "eth_price",
+            "SELECT eth_price_webhook FROM GuildSettingsInformation WHERE eth_price_webhook_enabled=1",
+        )
+        data3 = await self._data_grab(
+            "eth_gas",
+            "SELECT eth_gas_webhook FROM GuildSettingsInformation WHERE eth_gas_webhook_enabled=1",
+        )
+        data4 = await self._data_grab(
+            "ens",
+            "SELECT ens_webhook FROM GuildSettingsInformation WHERE ens_webhook_enabled=1",
+        )
+        return data1 + data2 + data3 + data4

@@ -69,7 +69,10 @@ class SettingsView(View):
         self.webhook_select.callback = self.webhook_select_callback
 
         super().__init__(
-            self.tool_select, self.cancel_button, self.on_off_button, self.webhook_select
+            self.tool_select,
+            self.cancel_button,
+            self.on_off_button,
+            self.webhook_select,
         )
 
     async def _ui_state_one(self):
@@ -114,13 +117,18 @@ class SettingsView(View):
         # column 1 = id, 2-5 = webhook urls, 6-9 = enabled bool
         db_data = await self.db.retrieve_from_id(interaction.guild_id)
         # link placeholder (selected value) to the corresponding database webhook url
-        active_webhook = db_data[list(self.db_keys).index(self.tool_select.placeholder) + 1]
+        active_webhook = db_data[
+            list(self.db_keys).index(self.tool_select.placeholder) + 1
+        ]
         # get the current enabled/disabled value for the corresponding selected value
-        button_setting = db_data[list(self.db_keys).index(self.tool_select.placeholder) + 5]
+        button_setting = db_data[
+            list(self.db_keys).index(self.tool_select.placeholder) + 5
+        ]
 
         self.webhook_select.placeholder = (
-            self.webhook_urls_to_name
-[active_webhook] if active_webhook else "#------------"
+            self.webhook_urls_to_name[active_webhook]
+            if active_webhook
+            else "#------------"
         )
         if button_setting:
             self.on_off_button.label = "Enabled"
