@@ -133,3 +133,4 @@ __pycache__/
 app*.py
 *.db
 *.DS_Store
+testing/
