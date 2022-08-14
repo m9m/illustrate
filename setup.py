@@ -8,7 +8,7 @@ with open("requirements.txt", "r") as fd:
 
 setup(
     name='illustrate',
-    version='1.0',
+    version='1.0.1',
     author='m9m',
     license='MIT',
     project_urls={
