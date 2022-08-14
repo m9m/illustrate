@@ -1,10 +1,10 @@
 from setuptools import setup, find_packages
 
 with open("README.md", "r") as fd:
-    read_me =fd.read()
+    read_me = fd.read()
     
 with open("requirements.txt", "r") as fd:
-    requirements =fd.read()
+    requirements = fd.read()
 
 setup(
     name='illustrate',
@@ -17,7 +17,7 @@ setup(
     },
     description="Simplistic & powerful crypto analytics through Discord",
     long_description=read_me,
-    long_description_content_type="text/x-rst",
+    long_description_content_type="text/markdown",
     url="https://github.com/m9m/illustrate",
     python_requires=">=3.8.0",
     install_requires=requirements,
