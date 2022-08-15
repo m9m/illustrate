@@ -133,3 +133,4 @@ app*.py
 *.db
 *.DS_Store
 testing/
+.vscode/

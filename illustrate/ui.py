@@ -1,14 +1,25 @@
-from discord.ui import View, Select, Button
-import discord
+"""
+Read LICENSE.md for licensing information
+"""
 import time
+import discord
 
 
-class SettingsView(View):
-    timeout_embed = discord.Embed(
+from discord.ui import View, Select, Button
+
+TIMEOUT_EMBED = discord.Embed(
         title="Timeout",
         description="The panel has timed out. Use `/setup` again to display a new instance.",
         color=discord.Color.dark_purple(),
     )
+
+class SettingsView(View):
+    """
+    UI panel for the slash command /panel
+
+    Args:
+        View (discord.ui.View): _description_
+    """
 
     def __init__(self, db):
         self.db = db
@@ -140,16 +151,16 @@ class SettingsView(View):
             self.on_off_button.style = discord.ButtonStyle.gray
 
     async def _update(self, interaction):
-        global timeout_embed
         """
         Used internally. Update the current panel to a new state or update the view in general.
 
         Args:
             interaction (): default paramter from the discord callback
         """
+        global TIMEOUT_EMBED
         if time.time() - self.time_delta > 600:
             self.clear_items()
-            await interaction.response.edit_message(view=self, embed=timeout_embed)
+            await interaction.response.edit_message(view=self, embed=TIMEOUT_EMBED)
             del self
         else:
             await interaction.response.edit_message(view=self)
