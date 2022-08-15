@@ -47,12 +47,18 @@ class IllustrateCogs(Cog):
 
 
 class IllustrateBot(Bot):
+    """
+    Main bot function for creating and running a discord bot
+
+    Args:
+        Bot (discord.Bot): Pycord bot to be subclassed
+    """
     def __init__(self, settings):
         super().__init__()
-        self.db = DatabaseUtilities()
-        self.data_scrape_utilities = ScrapeUtilities(self.db, settings)
-        self.hook_utilities = HookUtilities(self.db, settings)
-        # self._default_member_permissions=discord.Permissions(149568)
+        self.database = DatabaseUtilities()
+        self.data_scrape_utilities = ScrapeUtilities(self.database, settings)
+        self.hook_utilities = HookUtilities(self.database, settings)
+        # self._default_member_pxermissions=discord.Permissions(149568)
         self.settings = settings
 
     async def on_ready(self):
