@@ -1,10 +1,16 @@
+"""
+Read LICENSE.md for licensing information
+"""
 import sqlite3
 
 
 class DatabaseUtilities:
+    """
+    Wrapper for IllustrateBot with shortcut functions for sqlite3
+    """
     def __init__(self):
         # create re-usable connection object and try to REGISTER tables
-        self.db = self._create_connection()
+        self.database= self._create_connection()
         self._register_tables()
 
     def _create_connection(self, db_file="./data.db"):
@@ -17,10 +23,10 @@ class DatabaseUtilities:
         Returns:
             connection: database object
         """
-        self.db = sqlite3.connect(
+        self.database = sqlite3.connect(
             db_file,
         )
-        return self.db
+        return self.database
 
     def _register_tables(self):
         """
@@ -41,12 +47,12 @@ class DatabaseUtilities:
                 data_name VARCHAR(20) PRIMARY KEY,
                 value VARCHAR(200)
                 ); """
-        c = self.db.cursor()
+        c = self.database.cursor()
         c.execute(t1)
-        self.db.commit()
-        c = self.db.cursor()
+        self.database.commit()
+        c = self.database.cursor()
         c.execute(t2)
-        self.db.commit()
+        self.database.commit()
 
     async def enter_service_data(self, data_name, value):
         """
@@ -56,11 +62,11 @@ class DatabaseUtilities:
             data_name (str): the identifier of the data served as a primary key value.
             value (str, int): value of the entry that goes into column 2 (value)
         """
-        sql = f"INSERT INTO ServiceData(data_name,value) VALUES(?,?)"
-        cur = self.db.cursor()
+        sql = "INSERT INTO ServiceData(data_name,value) VALUES(?,?)"
+        cur = self.database.cursor()
         try:
             cur.execute(sql, (data_name, value))
-            self.db.commit()
+            self.database.commit()
         except sqlite3.IntegrityError:
             # record already exists
             pass
@@ -73,13 +79,13 @@ class DatabaseUtilities:
             data_name (str): the identifier of the data served as a primary key value.
             value (str, int): value of the entry that goes into column 2 (value)
         """
-        sql = f"""UPDATE ServiceData
+        sql = """UPDATE ServiceData
                 SET value = ?
                 WHERE data_name = ?
                 """
-        cur = self.db.cursor()
+        cur = self.database.cursor()
         cur.execute(sql, (value, data_name))
-        self.db.commit()
+        self.database.commit()
 
     async def retrieve_service_data(self, data_name):
         """
@@ -91,10 +97,10 @@ class DatabaseUtilities:
         Returns:
             str,int: the data assigned to the data_name primary key
         """
-        sql = f"SELECT * FROM ServiceData WHERE data_name=?"
-        cur = self.db.cursor()
+        sql = "SELECT * FROM ServiceData WHERE data_name=?"
+        cur = self.database.cursor()
         cur.execute(sql, (data_name,))
-        self.db.commit()
+        self.database.commit()
         row = cur.fetchall()
         return row[0]
 
@@ -107,10 +113,10 @@ class DatabaseUtilities:
             **kwargs: key, value pair where the key identifies the column and value becomes the default data stored for the entry
         """
         sql = f"INSERT INTO GuildSettingsInformation(id,{','.join(kwarg[0] for kwarg in kwargs.items())}) VALUES({','.join('?' for _ in range(len(kwargs)+1))})"
-        cur = self.db.cursor()
+        cur = self.database.cursor()
         try:
             cur.execute(sql, [user_id] + [kwarg[1] for kwarg in kwargs.items()])
-            self.db.commit()
+            self.database.commit()
         except sqlite3.IntegrityError:
             # record already exists
             pass
@@ -127,7 +133,7 @@ class DatabaseUtilities:
         sql = f"""UPDATE GuildSettingsInformation
                 SET {key} = ?
                 WHERE id = ?"""
-        cur = self.db.cursor()
+        cur = self.database.cursor()
         cur.execute(
             sql,
             (
@@ -135,7 +141,7 @@ class DatabaseUtilities:
                 user_id,
             ),
         )
-        self.db.commit()
+        self.database.commit()
 
     async def retrieve_from_id(self, user_id):
         """
@@ -147,10 +153,10 @@ class DatabaseUtilities:
         Returns:
             str,int: all data from the row with the param user_id
         """
-        sql = f"SELECT * FROM GuildSettingsInformation WHERE id=?"
-        cur = self.db.cursor()
+        sql = "SELECT * FROM GuildSettingsInformation WHERE id=?"
+        cur = self.database.cursor()
         cur.execute(sql, (user_id,))
-        self.db.commit()
+        self.database.commit()
         row = cur.fetchall()
         return row[0]
 
@@ -165,9 +171,9 @@ class DatabaseUtilities:
         Returns:
             List[List[key, webhook_url]]: list of key, webhook_url data
         """
-        cur = self.db.cursor()
+        cur = self.database.cursor()
         cur.execute(sql, ())
-        self.db.commit()
+        self.database.commit()
         rows = cur.fetchall()
         return [[key, row[0]] for row in rows]
 

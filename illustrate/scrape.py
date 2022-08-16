@@ -1,12 +1,19 @@
-import requests
+"""
+Read LICENSE.md for licensing information
+"""
 import asyncio
+import requests
+
 
 
 class ScrapeUtilities:
-    def __init__(self, db, settings):
-        self.db = db
+    """
+    Scraper for scraping web3 information
+    """
+    def __init__(self, database, settings):
+        self.database = database
         self.settings = settings
-        self.s = requests.sessions.session()
+        self.session = requests.sessions.session()
         self.running = True
         self.coinwatch_api_key = self.settings["coinwatch_api_key"]
 
@@ -15,7 +22,7 @@ class ScrapeUtilities:
         Dispatches and loops each individual function to keep Service information updated
         """
         for default in ["btc_price", "eth_price", "eth_gas", "ens"]:
-            await self.db.enter_service_data(default, value="")
+            await self.database.enter_service_data(default, value="")
         while self.running:
             await self.btc_price_operations()
             await self.eth_price_operations()
@@ -27,7 +34,7 @@ class ScrapeUtilities:
         """
         Updates BTC price
         """
-        response = self.s.post(
+        response = self.session.post(
             "https://api.livecoinwatch.com/coins/single",
             headers={
                 "x-api-key": self.coinwatch_api_key,
@@ -35,7 +42,7 @@ class ScrapeUtilities:
             },
             json={"currency": "USD", "code": "BTC", "meta": False},
         )
-        await self.db.update_service_data(
+        await self.database.update_service_data(
             "btc_price", value=round(response.json()["rate"], 2)
         )
 
@@ -43,7 +50,7 @@ class ScrapeUtilities:
         """
         Updates ETH Price
         """
-        response = self.s.post(
+        response = self.session.post(
             "https://api.livecoinwatch.com/coins/single",
             headers={
                 "x-api-key": self.coinwatch_api_key,
@@ -51,7 +58,7 @@ class ScrapeUtilities:
             },
             json={"currency": "USD", "code": "ETH", "meta": False},
         )
-        await self.db.update_service_data(
+        await self.database.update_service_data(
             "eth_price", value=round(response.json()["rate"], 2)
         )
 
@@ -59,8 +66,8 @@ class ScrapeUtilities:
         """
         Updates ETH gas
         """
-        response = self.s.get("https://ethgasstation.info/api/ethgasAPI.json").json()
-        await self.db.update_service_data(
+        response = self.session.get("https://ethgasstation.info/api/ethgasAPI.json").json()
+        await self.database.update_service_data(
             "eth_gas",
             value=f"Fast: {response['fastest']/10} gwei ({response['fastestWait']}m)\\n"
             f"Average: {response['average']/10} gwei ({response['avgWait']}m)\\n"
@@ -71,4 +78,4 @@ class ScrapeUtilities:
         """
         TODO Add ENS data grabbing
         """
-        await self.db.update_service_data("ens", value="Placeholder")
+        await self.database.update_service_data("ens", value="Placeholder")

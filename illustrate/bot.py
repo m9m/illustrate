@@ -1,16 +1,25 @@
+"""
+Read LICENSE.md for licensing information
+"""
+
+import asyncio
+
+from discord.commands import slash_command
+from discord.ext.commands import Cog
+from discord import Bot
+
 from .database import DatabaseUtilities
 from .scrape import ScrapeUtilities
 from .hook import HookUtilities
 from .ui import SettingsView
 
-from discord.commands import slash_command
-from discord.ext.commands import Cog
-
-from discord import Bot
-import asyncio
-
-
 class IllustrateCogs(Cog):
+    """
+    Provides a cog containing slash commands which is able to be applied to a bot class
+
+    Args:
+        Cog (discord.ext.commands.Cog): Cog class
+    """
     def __init__(self, bot):
         self.bot = bot
 
@@ -38,12 +47,18 @@ class IllustrateCogs(Cog):
 
 
 class IllustrateBot(Bot):
+    """
+    Main bot function for creating and running a discord bot
+
+    Args:
+        Bot (discord.Bot): Pycord bot to be subclassed
+    """
     def __init__(self, settings):
         super().__init__()
-        self.db = DatabaseUtilities()
-        self.data_scrape_utilities = ScrapeUtilities(self.db, settings)
-        self.hook_utilities = HookUtilities(self.db, settings)
-        # self._default_member_permissions=discord.Permissions(149568)
+        self.database = DatabaseUtilities()
+        self.data_scrape_utilities = ScrapeUtilities(self.database, settings)
+        self.hook_utilities = HookUtilities(self.database, settings)
+        # self._default_member_pxermissions=discord.Permissions(149568)
         self.settings = settings
 
     async def on_ready(self):
@@ -52,7 +67,7 @@ class IllustrateBot(Bot):
         """
         print(f"Login @{self.user}")
 
-    def run(self):
+    def run(self, *args, **kwargs):
         """
         Start two daemon processes non-bllocking and a final blocking run call for the bot
         """
@@ -62,4 +77,4 @@ class IllustrateBot(Bot):
         )
         asyncio.get_event_loop().create_task(self.hook_utilities.loop())
         # create a final blocking task on main thread
-        super().run(self.settings["discord_bot_token"])
+        super().run(self.settings["discord_bot_token"], *args, **kwargs)

@@ -7,9 +7,13 @@ _Simplistic & powerful crypto analytics through Discord_
 illustrate is a minimalistic, open source Discord bot that serves as a customizable front-end for server-owners and crypto enthusiasts. illustrate’s UI and setup process is easy to follow, and visually appealing as a personal or public analytics platform. With availability in mind, the bot comes bundled with a sqlite database wrapper for higher production means, and can support dozens of servers at once.
 
 ## Features:
-* Front-end interface through Discord API, with the ability to run under a personal bot key
-* Bundled bot, scraper, and sqlite wrapper
-* Production ready and scalable to dozens of servers
+* Bitcoin Price
+* Ethereum Price
+* EThereum Gas
+
+## Roadmap:
+* ENS Data
+* MATIC Data
 
 ## Installation:
 illustrate is available through pypi by the following command

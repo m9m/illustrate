@@ -1,16 +1,21 @@
-import requests
-import json
+"""
+Read LICENSE.md for licensing information
+"""
 import asyncio
-
+import json
+import requests
 
 class HookUtilities:
-    def __init__(self, db, settings):
-        self.db = db
+    """
+    Post webhook data to webhook urls
+    """
+    def __init__(self, database, settings):
+        self.database = database
         self.running = True
-        self.s = requests.sessions.session()
+        self.session = requests.sessions.session()
         self.settings = settings
         self.webhook_json_data = settings["webhook_json_data"]
-        self.db_keys_reverse = {
+        self.database_keys_reverse = {
             "btc_price": "Bitcoin Price",
             "eth_price": "Ethereum Price",
             "eth_gas": "Ethereum Gas",
@@ -25,12 +30,12 @@ class HookUtilities:
             data_name (str): the data_name used as a key value
             channel (str): the webhook url to send the embed to
         """
-        value = await self.db.retrieve_service_data(data_name)
-        self.s.post(
+        value = await self.database.retrieve_service_data(data_name)
+        self.session.post(
             webhook_url,
             json=json.loads(
                 self.webhook_json_data.replace(
-                    "TITLE_VALUE", self.db_keys_reverse[value[0]]
+                    "TITLE_VALUE", self.database_keys_reverse[value[0]]
                 ).replace("DATA_VALUE", value[1])
             ),
         )
@@ -40,7 +45,7 @@ class HookUtilities:
         Create an infinite loop for constantly retrieving and sending data to enabled webhooks
         """
         while self.running:
-            enabled_webhooks = await self.db.retrieve_all_enabled_webhooks()
+            enabled_webhooks = await self.database.retrieve_all_enabled_webhooks()
             for hook in enabled_webhooks:
                 if hook[1]:
                     await self._send(hook[0], hook[1])

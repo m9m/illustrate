@@ -1,10 +1,11 @@
 from setuptools import setup, find_packages
 
-with open("README.md", "r") as fd:
+with open("README.md", "r", encoding="utf-8") as fd:
     read_me = fd.read()
-    
-with open("requirements.txt", "r") as fd:
-    requirements = fd.read()
+
+requirements = []
+with open("requirements.txt", "r", encoding="utf-8") as fd:
+    requirements = fd.read().splitlines()
 
 setup(
     name='illustrate',
