@@ -55,9 +55,6 @@ illustrate_bot.add_cog(IllustrateCogs(illustrate_bot))
 illustrate_bot.run()
 ```
 
-## Disclaimer and Acknowledgements:
-This project utilizes third party API services and linked libraries. None of these services specifically approve or are affiliated with the illustrate project, and they are all acknowledged & thanked below for their use in this project:
-
 ### Third Party Services
 Discord API ([Terms of Service](https://discord.com/terms) | [Developer Policy](https://discord.com/developers/docs/policies-and-agreements/developer-policy) | [Developer Terms](https://discord.com/developers/docs/policies-and-agreements/terms-of-service))
 
