@@ -36,9 +36,9 @@ from illustrate import IllustrateBot, IllustrateCogs
 import json
 
 settings = {
-    "discord_bot_token": "xxxxx.xxx.xxxx-xxxxx-xxxx",
-    "webhook_update_intervals": 300,
-    "coinwatch_api_key": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx",
+    "discord_bot_token": "xxxxx.xxx.xxxx-xxxxx-xxxx", # edit this value
+    "webhook_update_intervals": 300, # edit this value
+    "coinwatch_api_key": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx", # edit this value
     "webhook_json_data": json.dumps({
         "username": "illustrate",
         "embeds": [
