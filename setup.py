@@ -13,7 +13,7 @@ setup(
     author='m9m',
     license='MIT',
     project_urls={
-        "Website": "https://m9m.dev",
+        "Website": "https://www.keeganm.net",
         "Github": "https://github.com/m9m/illustrate",
     },
     description="Simplistic & powerful crypto analytics through Discord",
