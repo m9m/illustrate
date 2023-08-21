@@ -3,10 +3,11 @@
 # illustrate
 _Simplistic & powerful crypto analytics through a variety of mediums_
 
-https://github.com/m9m/illustrate/assets/95250150/cf0c8638-4f44-40e3-8efe-46a2d67c7dbd
+
 <img width="281" alt="Screen Shot 2023-08-21 at 9 03 58 AM (1)" src="https://github.com/m9m/illustrate/assets/95250150/68b22be5-c1a7-4bca-a5cf-b7092eff0759">
-<img width="281" alt="Screen Shot 2023-08-21 at 9 03 58 AM (2)" src="https://github.com/m9m/illustrate/assets/95250150/af6d02ef-2d00-4663-bf75-ea5e41b95a9f">
-<img width="485" alt="Screen Shot 2022-09-21 at 1 49 49 AM" src="https://user-images.githubusercontent.com/95250150/191434388-64014130-1311-4dcb-ad95-c78945cbba65.png">
+
+<img width="268" alt="Screen Shot 2023-08-21 at 9 03 40 AM" src="https://github.com/m9m/illustrate/assets/95250150/34cfe18a-e64e-46f8-89a6-38137e486191">
+
 
 ## Overview:
 the illustrate project is meant to give the tools necessary to paint a picture of the cryptocurrency scene, or "illusrate" it. This involves tools for coin prices, coin history, NFTS, ENS data, and more, all in a graphical representation.
