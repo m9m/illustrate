@@ -1,15 +1,15 @@
 
 
 # illustrate
-_Simplistic & powerful crypto analytics_
+_Simplistic & powerful crypto analytics through a variety of mediums_
 
-
-https://github.com/m9m/illustrate/assets/95250150/c4e148ed-add8-41e9-9a11-9426dac57d7d
-
+https://github.com/m9m/illustrate/assets/95250150/cf0c8638-4f44-40e3-8efe-46a2d67c7dbd
+<img width="281" alt="Screen Shot 2023-08-21 at 9 03 58 AM (1)" src="https://github.com/m9m/illustrate/assets/95250150/68b22be5-c1a7-4bca-a5cf-b7092eff0759">
+<img width="281" alt="Screen Shot 2023-08-21 at 9 03 58 AM (2)" src="https://github.com/m9m/illustrate/assets/95250150/af6d02ef-2d00-4663-bf75-ea5e41b95a9f">
 <img width="485" alt="Screen Shot 2022-09-21 at 1 49 49 AM" src="https://user-images.githubusercontent.com/95250150/191434388-64014130-1311-4dcb-ad95-c78945cbba65.png">
 
 ## Overview:
-the illustrate project is meant to give the tools necessary to paint a picture of the cryptocurrency scene. This involves coin prices, coin history, NFTS, ENS data, and more, all in a graphical representation.
+the illustrate project is meant to give the tools necessary to paint a picture of the cryptocurrency scene, or "illusrate" it. This involves tools for coin prices, coin history, NFTS, ENS data, and more, all in a graphical representation.
 
 illustrate's flagship discord bot is a minimalistic, open source Discord bot that serves as a customizable engine for server-owners and crypto enthusiasts. illustrate’s UI and setup process is easy to follow, and visually appealing as a personal or public analytics platform. With scaling in mind, the bot comes bundled with a sqlite database wrapper for higher production means, and can support dozens of servers at once. Any webhooks in a server that illustrate has access to can be linked to a type of analytic for an easy-access and plug & play setup.
 
