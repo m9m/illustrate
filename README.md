@@ -3,6 +3,7 @@
 # illustrate
 _Simplistic & powerful crypto analytics through a variety of mediums_
 
+https://github.com/m9m/illustrate/assets/95250150/cf0c8638-4f44-40e3-8efe-46a2d67c7dbd
 
 <img width="281" alt="Screen Shot 2023-08-21 at 9 03 58 AM (1)" src="https://github.com/m9m/illustrate/assets/95250150/68b22be5-c1a7-4bca-a5cf-b7092eff0759">
 
