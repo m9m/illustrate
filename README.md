@@ -15,6 +15,8 @@ the illustrate project is meant to give the tools necessary to paint a picture o
 
 illustrate's flagship discord bot is a minimalistic, open source Discord bot that serves as a customizable engine for server-owners and crypto enthusiasts. illustrate’s UI and setup process is easy to follow, and visually appealing as a personal or public analytics platform. With scaling in mind, the bot comes bundled with a sqlite database wrapper for higher production means, and can support dozens of servers at once. Any webhooks in a server that illustrate has access to can be linked to a type of analytic for an easy-access and plug & play setup.
 
+# illustrate Discord Bot
+
 ## Features:
 * Bitcoin Price
 * Ethereum Price
