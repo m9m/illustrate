@@ -1,7 +1,7 @@
 
 
 # illustrate
-_Simplistic & powerful crypto analytics through a variety of mediums_
+_Simplistic & powerful crypto analytics_
 
 https://github.com/m9m/illustrate/assets/95250150/cf0c8638-4f44-40e3-8efe-46a2d67c7dbd
 

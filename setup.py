@@ -9,14 +9,14 @@ with open("requirements.txt", "r", encoding="utf-8") as fd:
 
 setup(
     name='illustrate',
-    version='1.0.1',
+    version='1.0.2',
     author='m9m',
     license='MIT',
     project_urls={
-        "Website": "https://www.keeganm.net",
+        "Website": "https://keeganm.net",
         "Github": "https://github.com/m9m/illustrate",
     },
-    description="Simplistic & powerful crypto analytics through Discord",
+    description="Simplistic & powerful crypto analytics",
     long_description=read_me,
     long_description_content_type="text/markdown",
     url="https://github.com/m9m/illustrate",
